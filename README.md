@@ -1,50 +1,19 @@
-# Tool for FEWZ
+# FEWZ calculation for DY reweighting
 
-### FEWZ installation
+## Motivation
 
-* FEWZ 3.1 tar.gz file: [link](http://gate.hep.anl.gov/fpetriello/FEWZ.html) (need to check the latest version first!)
+To produce the NNLO cross sections in 3-dimentions: dilepton (pT, rapidity) in each dimuon mass range
 
-```
-export SCRAM_ARCH=slc6_amd64_gcc630
-export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
-source $VO_CMS_SW_DIR/cmsset_default.sh
+And this result will be used for reweighting NLO DY samples
 
-# -- CMSSW enviornment -- #
-cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
-eval `scramv1 runtime -sh` # -- cmsenv
 
-cd ~/Physics/FEWZ/LHAPDF_621
-wget http://www.hep.anl.gov/fpetriello/FEWZ_3.1.rc.tar.gz
-tar -zxvf FEWZ_3.1.rc.tar.gz
 
-cd FEWZ_3.1.rc
+## Setup
 
 ```
+git clone git@github.com:KyeongPil-Lee/FEWZTool.git -b v01_Reweighting v01_Reweighting
+cd v01_Reweighting
 
-* Update ```makefile``` to use LHAPDF
-
-```
-LHAPDF = on
-LHADIR = /cvmfs/cms.cern.ch/slc6_amd64_gcc630/external/lhapdf/6.2.1-omkpbe3/lib # -- same with $LHAPDF_DATA_PATH/../../lib
-```
-
-* Compile
-
-```
-make fewzz >&make_fewzz.log&
-tail -f make_fewzz.log
-```
-
-
-
-## Generate FEWZ inputs
-
-```
-git clone git@github.com:KyeongPil-Lee/FEWZTool.git
-cd FEWZTool
 source setup.sh
-
-cd Example
-python InputGenerator_example.py
 ```
 
