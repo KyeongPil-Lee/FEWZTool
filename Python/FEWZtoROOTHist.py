@@ -8,9 +8,9 @@ class FEWZtoROOTHist:
         self.outputFileName = ""
 
     def Convert(self):
-        print "+" * 100
-        print "Warning: currently only the histograms with equal bin width are supported"
-        print "+" * 100
+        # print "+" * 100
+        # print "Warning: currently only the histograms with equal bin width are supported"
+        # print "+" * 100
         self.CheckOptions()
         self.PrintOptions()
 

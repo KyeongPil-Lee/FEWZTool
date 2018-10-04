@@ -62,6 +62,10 @@ class FEWZInputGenerator:
 
         self.PDF = ""
 
+        # -- custom histogram file
+        self.useCustomHist = 0
+        self.customHistPath = ""
+
         # -- internal variables
         self.TIME = time.strftime('%Y%m%d', time.localtime(time.time()))
 
@@ -72,7 +76,10 @@ class FEWZInputGenerator:
         self.PrintOptions()
 
         self.GenerateParameterInput()
-        self.GenerateHistogramInput()
+        if self.useCustomHist:
+            self.CopyCustomHistogramInput()
+        else:
+            self.GenerateHistogramInput()
         self.GenerateScript()
 
 
@@ -296,6 +303,15 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         f.close()
         print "%s is generated" % fileName_hist
 
+    def CopyCustomHistogramInput(self):
+        fileName_hist = self.MakeFileName( "hist" )
+
+        cmd_cp = "cp %s ./%s" % (self.customHistPath, fileName_hist)
+        os.system(cmd_cp)
+
+        print "%s is generated (original file: %s)" % (fileName_hist, self.customHistPath)
+        print "Do not forget to copy **bin.txt** also in the FEWZ working directory!"
+
 
     def GenerateScript(self):
         fileName_param = self.MakeFileName( 'param' )
@@ -311,6 +327,8 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         f = open(fileName_script, "w")
         f.write(
 """#!/bin/bash
+
+start=`date +%s`
 
 export SCRAM_ARCH=slc6_amd64_gcc630
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
@@ -329,6 +347,14 @@ echo "run: ./finish.sh {dirName_} {orderName_}.{fileName_output_}"
 ./finish.sh {dirName_} {orderName_}.{fileName_output_}
 
 echo "job is completed"
+
+end=`date +%s`
+
+runtime=$((end-start))
+
+echo "   start:   "$start
+echo "   end:     "$end
+echo "   runtime: "$runtime
 
 """.format(
         dirName_=dirName, fileName_param_=fileName_param,
@@ -474,6 +500,11 @@ echo "job is completed"
         print ""
 
         print "[PDF]: %s" % self.PDF
+        print ""
+
+        print "[useCustomHist]: %d" % self.useCustomHist
+        if self.useCustomHist:
+            print "   custom histogram file: %s" % self.customHistPath
         print ""
 
     # -- to have common format for the file name -- #
