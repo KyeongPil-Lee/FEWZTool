@@ -4,7 +4,9 @@ class FEWZInputGenerator:
     def __init__( self ):
 
         self.tag = ""
-        self.FEWZBinPath = ""
+        self.FEWZPath = ""
+        self.WSPath = "" # -- workspace containing all inputs. FEWZ result will also be saved here.
+
         self.nCore = 0
         # -- follow the order in FEWZ parameter card
         # -- put default values first
@@ -323,6 +325,8 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         if self.QCDOrder == 1: orderName = "NLO"
         elif self.QCDOrder == 2: orderName = "NNLO"
 
+        FEWZBinPath = self.FEWZPath+"/bin"
+
         fileName_script = self.MakeFileName( 'script' )
         f = open(fileName_script, "w")
         f.write(
@@ -338,13 +342,22 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
 eval `scramv1 runtime -sh` # -- cmsenv
 
-cd {FEWZBinPath_}
+cd {WSPath_}
 
-echo "run: ./local_run.sh z {dirName_} {fileName_param_} {fileName_hist_} {fileName_output_} ../ {nCore_}"
-./local_run.sh z {dirName_} {fileName_param_} {fileName_hist_} {fileName_output_} ../ {nCore_}
+echo "run local_run.sh"
+.{FEWZBinPath_}/local_run.sh z \\
+{WSPath_}/{dirName_} \\
+{WSPath_}/{fileName_param_} \\
+{WSPath_}/{fileName_hist_} \\
+{WSPath_}/{fileName_output_} \\
+{FEWZPath_} \\
+{nCore_}
 
-echo "run: ./finish.sh {dirName_} {orderName_}.{fileName_output_}"
-./finish.sh {dirName_} {orderName_}.{fileName_output_}
+
+echo "run finish.sh"
+.{FEWZBinPath_}/finish.sh \\
+{WSPath_}/{dirName_} \\
+{WSPath_}/{orderName_}.{fileName_output_}
 
 echo "job is completed"
 
@@ -360,7 +373,9 @@ echo "   runtime: "$runtime
         dirName_=dirName, fileName_param_=fileName_param,
         fileName_hist_=fileName_hist, fileName_output_=fileName_output,
         nCore_=self.nCore, orderName_=orderName,
-        FEWZBinPath_=self.FEWZBinPath) )
+        FEWZBinPath_=FEWZBinPath,
+        FEWZPath_ = self.FEWZPath,
+        WSPath_ = self.WSPath) )
 
         f.close()
         print "%s is generated" % fileName_script
@@ -371,8 +386,12 @@ echo "   runtime: "$runtime
             print "Set the tag"
             sys.exit()
 
-        if self.FEWZBinPath == "":
-            print "Set the path to FEWZ/bin"
+        if self.FEWZPath == "":
+            print "Set the path to FEWZ main directory"
+            sys.exit()
+
+        if self.WSPath == "":
+            print "Set the output path for FEWZ results"
             sys.exit()
 
         if self.nCore == 0:

@@ -3,7 +3,7 @@ import sys
 class MultiScriptGenerator:
     def __init__(self):
         self.tag = ""
-        self.FEWZBinPath = ""
+        self.WSPath = ""
         self.list_scriptName = []
         self.nJobPerScript = 0
 
@@ -39,7 +39,7 @@ class MultiScriptGenerator:
 
         f.write("#!/bin/bash\n\n")
 
-        cmd_cd = "cd %s" % self.FEWZBinPath
+        cmd_cd = "cd %s" % self.WSPath
         f.write(cmd_cd+"\n\n")
 
         for fileName in list_filePerJob:
@@ -62,7 +62,7 @@ class MultiScriptGenerator:
         f.write("# -- NOT intended for sourcing ...\n")
         f.write("# -- (after customization) just copy the commands and type in the terminal\n\n");
 
-        f.write("cd %s\n" % self.FEWZBinPath)
+        f.write("cd %s\n" % self.WSPath)
 
         for subScriptName in self.list_subScriptName:
             cmd = "qsub %s\n" % subScriptName
@@ -77,8 +77,8 @@ class MultiScriptGenerator:
             print "no tag!"
             sys.exit()
 
-        if self.FEWZBinPath == "":
-            print "no FEWZBinPath!"
+        if self.WSPath == "":
+            print "no WSPath!"
             sys.exit()
 
         if len(self.list_scriptName) == 0:

@@ -34,7 +34,8 @@ for massBinEdgePair in list_massBinEdgePair:
 
         generator.nCore = 24
 
-        generator.FEWZBinPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc/bin" # -- absolute path!
+        generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
+        generator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v01_TestForBinOpti_NLO" # -- absolute path!
 
         generator.muR = scale
         generator.muF = scale
@@ -80,7 +81,7 @@ for massBinEdgePair in list_massBinEdgePair:
 
 scriptGenerator = MultiScriptGenerator()
 scriptGenerator.tag = "TestForBinOpti"
-scriptGenerator.FEWZBinPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc/bin" # -- absolute path!
+scriptGenerator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v01_TestForBinOpti_NLO" # -- absolute path!
 scriptGenerator.list_scriptName = list_scriptName
 scriptGenerator.nJobPerScript = 4
 
