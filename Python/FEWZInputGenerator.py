@@ -67,6 +67,7 @@ class FEWZInputGenerator:
         # -- custom histogram file
         self.useCustomHist = 0
         self.customHistPath = ""
+        self.list_binTextFile = []
 
         # -- internal variables
         self.TIME = time.strftime('%Y%m%d', time.localtime(time.time()))
@@ -325,8 +326,6 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         if self.QCDOrder == 1: orderName = "NLO"
         elif self.QCDOrder == 2: orderName = "NNLO"
 
-        FEWZBinPath = self.FEWZPath+"/bin"
-
         fileName_script = self.MakeFileName( 'script' )
         f = open(fileName_script, "w")
         f.write(
@@ -342,22 +341,36 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
 eval `scramv1 runtime -sh` # -- cmsenv
 
-cd {WSPath_}
+cd {FEWZPath_}/bin
 
+# -- copy all necessary inputs under FEWZ/bin path
+cp {WSPath_}/{fileName_param_} ./
+cp {WSPath_}/{fileName_hist_} ./
+""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath,
+           fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
+        
+        if len(self.list_binTextFile) > 0:
+            for binTextFile in self.list_binTextFile:
+                cmd_cp = "cp %s/%s ./" % (self.WSPath, binTextFile)
+                f.write(cmd_cp+"\n")
+
+        f.write("""
 echo "run local_run.sh"
-.{FEWZBinPath_}/local_run.sh z \\
-{WSPath_}/{dirName_} \\
-{WSPath_}/{fileName_param_} \\
-{WSPath_}/{fileName_hist_} \\
-{WSPath_}/{fileName_output_} \\
-{FEWZPath_} \\
+./local_run.sh z \\
+{dirName_} \\
+{fileName_param_} \\
+{fileName_hist_} \\
+{fileName_output_} \\
+../ \\
 {nCore_}
 
-
 echo "run finish.sh"
-.{FEWZBinPath_}/finish.sh \\
-{WSPath_}/{dirName_} \\
-{WSPath_}/{orderName_}.{fileName_output_}
+./finish.sh \\
+{dirName_} \\
+{orderName_}.{fileName_output_}
+
+# -- bring the output .dat file to Workspace
+cp {orderName_}.{fileName_output_} {WSPath_}
 
 echo "job is completed"
 
@@ -373,8 +386,6 @@ echo "   runtime: "$runtime
         dirName_=dirName, fileName_param_=fileName_param,
         fileName_hist_=fileName_hist, fileName_output_=fileName_output,
         nCore_=self.nCore, orderName_=orderName,
-        FEWZBinPath_=FEWZBinPath,
-        FEWZPath_ = self.FEWZPath,
         WSPath_ = self.WSPath) )
 
         f.close()
