@@ -1,0 +1,260 @@
+ CMS collision Energy =    13000.000000000000     
+ Collider type = pp
+ ======================================
+ Factorization scale                =    2000.0000000000000     
+ Renormalization scale              =    2000.0000000000000     
+ ==================================
+ NLO QCD Cross-Section                                                                                                                                
+ ======================================
+ EW input parameters: Gmu scheme
+ Fermi constant (1/GeV^2)           =    1.1663700000000000E-005
+ ======================================
+ Lepton mass (GeV)                  =   0.10565837000000000     
+ W mass (GeV)                       =    80.403000000000006     
+ W width (GeV)                      =    2.1410000000000000     
+ Z mass (GeV)                       =    91.187600000000003     
+ Z width (GeV)                      =    2.4952000000000001     
+ Top mass (GeV)                     =    172.90000000000001     
+ Higgs mass (GeV)                   =    125.00000000000000     
+ ======================================
+ Strong coupling                    =    8.0698936327055909E-002
+ PDF set = NNPDF31_nlo_as_0118_luxqed                                  
+ ======================================
+ Z pole focus OFF
+ Lower M limit for non-Zpole     =    1000.0000000000000     
+ Upper M limit for non-Zpole     =    3000.0000000000000     
+ ======================================
+ Lepton-pair invariant mass minimum =    1000.0000000000000     
+ Lepton-pair invariant mass maximum =    3000.0000000000000     
+ Transverse mass minimum            =    0.0000000000000000     
+ Transverse mass maximum            =    100000.00000000000     
+ Z pT minimum                       =    0.0000000000000000     
+ Z pT maximum                       =    100000.00000000000     
+ Z rapidity minimum                 =    3.0000000000000000     
+ Z rapidity maximum                 =    100.00000000000000     
+ Lepton pT minimum                  =    0.0000000000000000     
+ Lepton pT maximum                  =    100000.00000000000     
+ Anti-lepton pT minimum             =    0.0000000000000000     
+ Anti-lepton pT maximum             =    100000.00000000000     
+ Lepton eta absolute value?         =   T
+ Lepton pseudorapidity minimum      =    0.0000000000000000     
+ Lepton pseudorapidity maximum      =    100.00000000000000     
+ Anti-lepton eta absolute value?    =   T
+ Anti-lepton pseudorapidity minimum =    0.0000000000000000     
+ Anti-lepton pseudorapidity maximum =    100.00000000000000     
+ ======================================
+ Photon Recombination Cone Size     =      0.0000000000000000     
+ Minimum pT for Observable Photon   =    0.0000000000000000     
+ Maximum eta for Observable Photon  =    100000.00000000000     
+ Minimum Number of Photon           =             0
+ Maximum Number of Photon           =             1
+ ======================================
+ Jet merging algorithm              =   ktal
+ Jet algorithm cone size (deltaR)   =   0.40000000000000002     
+ parton-parton Rsep (cone algo only)=    1.3000000000000000     
+ Minimum pT for Observable Jets     =    0.0000000000000000     
+ Maximum eta for Observable Jets    =    100000.00000000000     
+ Minimum Number of Jets             =             0
+ Maximum Number of Jets             =             2
+ Leading jet pT minimum             =    0.0000000000000000     
+ ======================================
+ Lep-Anti-lep deltaR minimum        =    0.0000000000000000     
+ Lep-Anti-lep deltaPhi minimum      =    0.0000000000000000     
+ Lep-Anti-lep deltaPhi maximum      =    4.0000000000000000     
+ Lep-Jet deltaR minimum             =    0.0000000000000000     
+ Lep-Photon deltaR minimum          =    0.0000000000000000     
+ ======================================
+ Rapidity of Z cutoff for CS angles =    0.0000000000000000     
+ 
+ ===========   VEGAS PARAMETERS   ========
+ 
+ Maximum number of evaluations      =    200000000
+ Actual number of evaluations       =    202500000
+ Requested relative precision (%)   =   0.10000000000000001     
+ Requested absolute precision       =    0.0000000000000000     
+ Total integration time (sec)       =    32185.000000000000     
+ Random number seed                 =           38
+ 
+ ===========   RESULT    =================
+ 
+ Sigma (pb)                  =    0
+ Integration Error (pb)      =    1.55263e-21
+ PDF Error (pb)              =             0
+ 
+ ===========   HISTOGRAMS    =================
+      bin           weight    numerical error       + pdf error       - pdf error
+
+  ----   Z/W pT         ----
+
+     0.50                 0                 0                 0
+     1.50                 0                 0                 0
+     2.50                 0                 0                 0
+     3.50                 0                 0                 0
+     4.50                 0                 0                 0
+     5.50                 0                 0                 0
+     6.50                 0                 0                 0
+     7.50                 0                 0                 0
+     8.50                 0                 0                 0
+     9.50                 0                 0                 0
+    15.00                 0                 0                 0
+    25.00                 0                 0                 0
+    35.00                 0                 0                 0
+    45.00                 0                 0                 0
+    55.00                 0                 0                 0
+    65.00                 0                 0                 0
+    75.00                 0                 0                 0
+    85.00                 0                 0                 0
+    95.00                 0                 0                 0
+   150.00                 0                 0                 0
+   250.00                 0                 0                 0
+   350.00                 0                 0                 0
+   450.00                 0                 0                 0
+   750.00                 0                 0                 0
+
+  ----   Z/W rapidity   ----
+
+     0.15                 0                 0                 0
+     0.45                 0                 0                 0
+     0.75                 0                 0                 0
+     1.05                 0                 0                 0
+     1.35                 0                 0                 0
+     1.65                 0                 0                 0
+     1.95                 0                 0                 0
+     2.25                 0                 0                 0
+     2.70                 0                 0                 0
+     3.50                 0                 0                 0
+     4.50                 0                 0                 0
+    52.50                 0                 0                 0
+
+  ----   Q_ll Invaria   ----
+
+    61.50                 0                 0                 0
+    64.50                 0                 0                 0
+    67.50                 0                 0                 0
+    70.50                 0                 0                 0
+    73.50                 0                 0                 0
+    76.50                 0                 0                 0
+    79.50                 0                 0                 0
+    82.50                 0                 0                 0
+    85.50                 0                 0                 0
+    88.50                 0                 0                 0
+    91.50                 0                 0                 0
+    94.50                 0                 0                 0
+    97.50                 0                 0                 0
+   100.50                 0                 0                 0
+   103.50                 0                 0                 0
+   106.50                 0                 0                 0
+   109.50                 0                 0                 0
+   112.50                 0                 0                 0
+   115.50                 0                 0                 0
+   118.50                 0                 0                 0
+
+  ----   l-/lep. pT     ----
+
+     2.00                 0                 0                 0
+     6.00                 0                 0                 0
+    10.00                 0                 0                 0
+    14.00                 0                 0                 0
+    18.00                 0                 0                 0
+    22.00                 0                 0                 0
+    26.00                 0                 0                 0
+    30.00                 0                 0                 0
+    34.00                 0                 0                 0
+    38.00                 0                 0                 0
+    42.00                 0                 0                 0
+    46.00                 0                 0                 0
+    50.00                 0                 0                 0
+    54.00                 0                 0                 0
+    58.00                 0                 0                 0
+    62.00                 0                 0                 0
+    66.00                 0                 0                 0
+    70.00                 0                 0                 0
+    74.00                 0                 0                 0
+    78.00                 0                 0                 0
+    82.00                 0                 0                 0
+    86.00                 0                 0                 0
+    90.00                 0                 0                 0
+    94.00                 0                 0                 0
+    98.00                 0                 0                 0
+
+  ----   l-/lep. eta    ----
+
+    -9.20                 0                 0                 0
+    -8.40                 0                 0                 0
+    -7.60                 0                 0                 0
+    -6.80                 0                 0                 0
+    -6.00                 0                 0                 0
+    -5.20                 0                 0                 0
+    -4.40                 0                 0                 0
+    -3.60                 0                 0                 0
+    -2.80                 0                 0                 0
+    -2.00                 0                 0                 0
+    -1.20                 0                 0                 0
+    -0.40                 0                 0                 0
+     0.40                 0                 0                 0
+     1.20                 0                 0                 0
+     2.00                 0                 0                 0
+     2.80                 0                 0                 0
+     3.60                 0                 0                 0
+     4.40                 0                 0                 0
+     5.20                 0                 0                 0
+     6.00                 0                 0                 0
+     6.80                 0                 0                 0
+     7.60                 0                 0                 0
+     8.40                 0                 0                 0
+     9.20                 0                 0                 0
+
+  ----   l+/neu. pT     ----
+
+     2.00                 0                 0                 0
+     6.00                 0                 0                 0
+    10.00                 0                 0                 0
+    14.00                 0                 0                 0
+    18.00                 0                 0                 0
+    22.00                 0                 0                 0
+    26.00                 0                 0                 0
+    30.00                 0                 0                 0
+    34.00                 0                 0                 0
+    38.00                 0                 0                 0
+    42.00                 0                 0                 0
+    46.00                 0                 0                 0
+    50.00                 0                 0                 0
+    54.00                 0                 0                 0
+    58.00                 0                 0                 0
+    62.00                 0                 0                 0
+    66.00                 0                 0                 0
+    70.00                 0                 0                 0
+    74.00                 0                 0                 0
+    78.00                 0                 0                 0
+    82.00                 0                 0                 0
+    86.00                 0                 0                 0
+    90.00                 0                 0                 0
+    94.00                 0                 0                 0
+    98.00                 0                 0                 0
+
+  ----   l+/neu. eta    ----
+
+    -9.20                 0                 0                 0
+    -8.40                 0                 0                 0
+    -7.60                 0                 0                 0
+    -6.80                 0                 0                 0
+    -6.00                 0                 0                 0
+    -5.20                 0                 0                 0
+    -4.40                 0                 0                 0
+    -3.60                 0                 0                 0
+    -2.80                 0                 0                 0
+    -2.00                 0                 0                 0
+    -1.20                 0                 0                 0
+    -0.40                 0                 0                 0
+     0.40                 0                 0                 0
+     1.20                 0                 0                 0
+     2.00                 0                 0                 0
+     2.80                 0                 0                 0
+     3.60                 0                 0                 0
+     4.40                 0                 0                 0
+     5.20                 0                 0                 0
+     6.00                 0                 0                 0
+     6.80                 0                 0                 0
+     7.60                 0                 0                 0
+     8.40                 0                 0                 0
+     9.20                 0                 0                 0
