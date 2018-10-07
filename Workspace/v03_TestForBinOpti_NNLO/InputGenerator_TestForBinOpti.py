@@ -62,9 +62,10 @@ for massBinEdgePair in list_massBinEdgePair:
 
         generator.PDF = "NNPDF31_nnlo_as_0118_luxqed"
 
+        # -- bin_dileptonPt_v3p1: used for high-mass
         generator.useCustomHist = True
         generator.customHistPath = "./HistTemplate/histTemplate_M%dto%d.txt" % (minM, maxM)
-        generator.list_binTextFile = ["bin_dileptonPt_v3.txt", "bin_dileptonRapidity_v2.txt"] # -- should be in WSPath
+        generator.list_binTextFile = ["bin_dileptonPt_v3.txt", "bin_dileptonPt_v3p1.txt", "bin_dileptonRapidity_v2.txt"] # -- should be in WSPath
 
         # -- NLO as a test
         if doNLOTest:
