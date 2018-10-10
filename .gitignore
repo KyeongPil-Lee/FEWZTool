@@ -1,0 +1,9 @@
+# -- python
+*.pyc
+
+# -- batchjob log
+*.e*
+*.o*
+
+# -- any logs
+*.log

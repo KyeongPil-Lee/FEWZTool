@@ -4,7 +4,9 @@ class FEWZInputGenerator:
     def __init__( self ):
 
         self.tag = ""
-        self.FEWZBinPath = ""
+        self.FEWZPath = ""
+        self.WSPath = "" # -- workspace containing all inputs. FEWZ result will also be saved here.
+
         self.nCore = 0
         # -- follow the order in FEWZ parameter card
         # -- put default values first
@@ -62,6 +64,11 @@ class FEWZInputGenerator:
 
         self.PDF = ""
 
+        # -- custom histogram file
+        self.useCustomHist = 0
+        self.customHistPath = ""
+        self.list_binTextFile = []
+
         # -- internal variables
         self.TIME = time.strftime('%Y%m%d', time.localtime(time.time()))
 
@@ -72,7 +79,10 @@ class FEWZInputGenerator:
         self.PrintOptions()
 
         self.GenerateParameterInput()
-        self.GenerateHistogramInput()
+        if self.useCustomHist:
+            self.CopyCustomHistogramInput()
+        else:
+            self.GenerateHistogramInput()
         self.GenerateScript()
 
 
@@ -296,6 +306,15 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         f.close()
         print "%s is generated" % fileName_hist
 
+    def CopyCustomHistogramInput(self):
+        fileName_hist = self.MakeFileName( "hist" )
+
+        cmd_cp = "cp %s ./%s" % (self.customHistPath, fileName_hist)
+        os.system(cmd_cp)
+
+        print "%s is generated (original file: %s)" % (fileName_hist, self.customHistPath)
+        print "Do not forget to copy **bin.txt** also in the FEWZ working directory!"
+
 
     def GenerateScript(self):
         fileName_param = self.MakeFileName( 'param' )
@@ -312,6 +331,8 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         f.write(
 """#!/bin/bash
 
+start=`date +%s`
+
 export SCRAM_ARCH=slc6_amd64_gcc630
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
@@ -320,21 +341,52 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
 eval `scramv1 runtime -sh` # -- cmsenv
 
-cd {FEWZBinPath_}
+cd {FEWZPath_}/bin
 
-echo "run: ./local_run.sh z {dirName_} {fileName_param_} {fileName_hist_} {fileName_output_} ../ {nCore_}"
-./local_run.sh z {dirName_} {fileName_param_} {fileName_hist_} {fileName_output_} ../ {nCore_}
+# -- copy all necessary inputs under FEWZ/bin path
+cp {WSPath_}/{fileName_param_} ./
+cp {WSPath_}/{fileName_hist_} ./
+""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath,
+           fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
+        
+        if len(self.list_binTextFile) > 0:
+            for binTextFile in self.list_binTextFile:
+                cmd_cp = "cp %s/%s ./" % (self.WSPath, binTextFile)
+                f.write(cmd_cp+"\n")
 
-echo "run: ./finish.sh {dirName_} {orderName_}.{fileName_output_}"
-./finish.sh {dirName_} {orderName_}.{fileName_output_}
+        f.write("""
+echo "run local_run.sh"
+./local_run.sh z \\
+{dirName_} \\
+{fileName_param_} \\
+{fileName_hist_} \\
+{fileName_output_} \\
+../ \\
+{nCore_}
+
+echo "run finish.sh"
+./finish.sh \\
+{dirName_} \\
+{orderName_}.{fileName_output_}
+
+# -- bring the output .dat file to Workspace
+cp {orderName_}.{fileName_output_} {WSPath_}
 
 echo "job is completed"
+
+end=`date +%s`
+
+runtime=$((end-start))
+
+echo "   start:   "$start
+echo "   end:     "$end
+echo "   runtime: "$runtime
 
 """.format(
         dirName_=dirName, fileName_param_=fileName_param,
         fileName_hist_=fileName_hist, fileName_output_=fileName_output,
         nCore_=self.nCore, orderName_=orderName,
-        FEWZBinPath_=self.FEWZBinPath) )
+        WSPath_ = self.WSPath) )
 
         f.close()
         print "%s is generated" % fileName_script
@@ -345,8 +397,12 @@ echo "job is completed"
             print "Set the tag"
             sys.exit()
 
-        if self.FEWZBinPath == "":
-            print "Set the path to FEWZ/bin"
+        if self.FEWZPath == "":
+            print "Set the path to FEWZ main directory"
+            sys.exit()
+
+        if self.WSPath == "":
+            print "Set the output path for FEWZ results"
             sys.exit()
 
         if self.nCore == 0:
@@ -474,6 +530,11 @@ echo "job is completed"
         print ""
 
         print "[PDF]: %s" % self.PDF
+        print ""
+
+        print "[useCustomHist]: %d" % self.useCustomHist
+        if self.useCustomHist:
+            print "   custom histogram file: %s" % self.customHistPath
         print ""
 
     # -- to have common format for the file name -- #
