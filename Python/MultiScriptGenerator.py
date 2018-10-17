@@ -43,7 +43,7 @@ class MultiScriptGenerator:
         f.write(cmd_cd+"\n\n")
 
         for fileName in list_filePerJob:
-            cmd = "source %s >&%s.log" % (fileName, fileName.split(".sh")[0])
+            cmd = "bash %s >&%s.log" % (fileName, fileName.split(".sh")[0])
             f.write(cmd+"\n")
             cmd_echo = 'echo "%s: finished"' % fileName
             f.write(cmd_echo+"\n\n")
