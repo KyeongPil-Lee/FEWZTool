@@ -1,4 +1,4 @@
-import sys
+import sys, time
 
 class MultiScriptGenerator:
     def __init__(self):
@@ -10,6 +10,7 @@ class MultiScriptGenerator:
         # -- internal variable
         self.nTotalJob = 0
         self.list_subScriptName = []
+        self.TIME = time.strftime('%Y%m%d', time.localtime(time.time()))
 
     def Generate(self):
         self.CheckOptions()
@@ -34,7 +35,7 @@ class MultiScriptGenerator:
         else:
             list_filePerJob = self.list_scriptName[int(i*self.nJobPerScript):int((i+1)*self.nJobPerScript)]
 
-        subScriptName = "%s_v%02d.sh" % (self.tag, i)
+        subScriptName = "v%s_%s_v%02d.sh" % (self.TIME, self.tag, i)
         f = open(subScriptName, "w")
 
         f.write("#!/bin/bash\n\n")
@@ -56,7 +57,7 @@ class MultiScriptGenerator:
         self.list_subScriptName.append(subScriptName)
 
     def GenerateQsubScript(self):
-        qsubScriptName = "qsub_%s.sh" % self.tag
+        qsubScriptName = "v%s_qsub_%s.sh" % (self.TIME, self.tag)
 
         f = open(qsubScriptName, "w")
         f.write("# -- NOT intended for sourcing ...\n")
