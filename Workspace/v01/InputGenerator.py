@@ -2,10 +2,11 @@ from Python.FEWZInputGenerator import FEWZInputGenerator
 from Python.MultiScriptGenerator import MultiScriptGenerator
 
 list_massBinEdgePair = [
-[11, 50],
-[12, 50],
-[13, 50],
-[14, 50],
+# [11, 50],
+# [12, 50],
+# [13, 50],
+# [14, 50],
+[14.5, 50],
 ]
 
 list_scriptName = []
@@ -19,13 +20,18 @@ for massBinEdgePair in list_massBinEdgePair:
     generator = FEWZInputGenerator()
 
     # -- mandatory options
-    generator.tag = "LowMassTest_M%.0lfto%.0lf" % (minM, maxM)
-    # generator.tag = generator.tag.replace(".", "p") # -- remove . in the file name: it makes error!!!
+    generator.tag = "LowMassTest_v02_M%.0lfto%.0lf" % (minM, maxM)
+    generator.tag = generator.tag.replace(".", "p") # -- remove . in the file name: it makes error!!!
 
     generator.nCore = 24
 
-    generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
-    generator.WSPath = "/data9/Users/kplee/FEWZTool/v02_LowMass/Workspace/v01" # -- absolute path!
+    # -- tamsa2
+    # generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
+    # generator.WSPath = "/data9/Users/kplee/FEWZTool/v02_LowMass/Workspace/v01" # -- absolute path!
+
+    # -- cms1
+    generator.FEWZPath = "/home/kplee/Physics/FEWZ/v01_LHAPDF621/FEWZ_3.1.rc" # -- absolute path!
+    generator.WSPath = "/home/kplee/Physics/FEWZTool/v02_LowMass/Workspace/v01" # -- absolute path!
 
     generator.muR = scale
     generator.muF = scale
@@ -56,10 +62,13 @@ for massBinEdgePair in list_massBinEdgePair:
 
 
 scriptGenerator = MultiScriptGenerator()
-scriptGenerator.tag = "LowMassTest"
-scriptGenerator.WSPath = "/data9/Users/kplee/FEWZTool/v02_LowMass/Workspace/v01" # -- absolute path!
+# scriptGenerator.tag = "LowMassTest"
+scriptGenerator.tag = "LowMassTest_v02"
+# scriptGenerator.WSPath = "/data9/Users/kplee/FEWZTool/v02_LowMass/Workspace/v01" # -- tamsa2
+scriptGenerator.WSPath = "/home/kplee/Physics/FEWZTool/v02_LowMass/Workspace/v01" # -- cms1
 scriptGenerator.list_scriptName = list_scriptName
-scriptGenerator.nJobPerScript = 2
+# scriptGenerator.nJobPerScript = 2
+scriptGenerator.nJobPerScript = 1
 scriptGenerator.Generate()
 
 
