@@ -1,7 +1,8 @@
 from Python.FEWZInputGenerator import FEWZInputGenerator
 from Python.MultiScriptGenerator import MultiScriptGenerator
 
-doNLOTest = True
+# doNLOTest = True
+doNLOTest = False
 
 list_massBinEdgePair = [
 [15, 60], # -- below Z-peak
@@ -37,7 +38,7 @@ for massBinEdgePair in list_massBinEdgePair:
         generator.tag = "TestForBinOpti_Resub_M%.0lfto%.0lf_diRap%.1lfto%.1lf" % (minM, maxM, minY, maxY)
         generator.tag = generator.tag.replace(".", "p") # -- remove . in the file name: it makes error!!!
 
-        generator.nCore = 24
+        generator.nCore = 12
 
         generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
         generator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v05_TestForOpti_NNLO_ResubWrongPtBin" # -- absolute path!
@@ -90,7 +91,7 @@ scriptGenerator = MultiScriptGenerator()
 scriptGenerator.tag = "TestForBinOpti_Resub"
 scriptGenerator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v05_TestForOpti_NNLO_ResubWrongPtBin" # -- absolute path!
 scriptGenerator.list_scriptName = list_scriptName
-scriptGenerator.nJobPerScript = 3
+scriptGenerator.nJobPerScript = 1
 
 if doNLOTest:
     scriptGenerator.tag = scriptGenerator.tag + "_NLO"
