@@ -309,6 +309,10 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
     def CopyCustomHistogramInput(self):
         fileName_hist = self.MakeFileName( "hist" )
 
+        if not os.path.exists(self.customHistPath):
+            print "custom histogram: %s -> NOT exists" % self.customHistPath
+            sys.exit()
+
         cmd_cp = "cp %s ./%s" % (self.customHistPath, fileName_hist)
         os.system(cmd_cp)
 
