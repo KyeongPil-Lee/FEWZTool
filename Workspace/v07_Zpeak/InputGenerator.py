@@ -1,8 +1,8 @@
 from Python.FEWZInputGenerator import FEWZInputGenerator
 from Python.MultiScriptGenerator import MultiScriptGenerator
 
-doNLOTest = True
-# doNLOTest = False
+# doNLOTest = True
+doNLOTest = False
 
 list_massBinEdgePair = [
 [60, 72],
