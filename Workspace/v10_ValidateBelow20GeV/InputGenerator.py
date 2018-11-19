@@ -77,7 +77,7 @@ for massBinEdgePair in list_massBinEdgePair:
         generator.customHistPath = "./HistTemplate/histTemplate_M%dto%d.txt" % (minM, maxM)
         generator.list_binTextFile = [
           "testBinDiPt_belowZPeak_v1.txt", "binDiRap_belowZPeak_v1.txt",
-          "testBinDiPt_Zpeak_v1.txt",      "binDiRap_Zpeak_v1.txt",
+          "testBinDiPt_ZPeak_v1.txt",      "binDiRap_ZPeak_v1.txt",
           "testBinDiPt_AboveZPeak_v1.txt", "binDiRap_AboveZPeak_v1.txt" ] # -- should be in WSPath
 
         # -- NLO as a test
