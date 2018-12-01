@@ -1,8 +1,8 @@
 from Python.FEWZInputGenerator import FEWZInputGenerator
 from Python.MultiScriptGenerator import MultiScriptGenerator
 
-doNLOTest = True
-# doNLOTest = False
+# doNLOTest = True
+doNLOTest = False
 
 list_massBinEdgePair = [
 [15, 20],
@@ -40,7 +40,7 @@ for massBinEdgePair in list_massBinEdgePair:
         generator.tag = generator.tag.replace(".", "p") # -- remove . in the file name: it makes error!!!
 
         # -- 8, 12, 24 ...
-        generator.nCore = 8
+        generator.nCore = 12
 
         generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
         generator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v12_BelowZPeak_MergeBelow20GeV" # -- absolute path!
