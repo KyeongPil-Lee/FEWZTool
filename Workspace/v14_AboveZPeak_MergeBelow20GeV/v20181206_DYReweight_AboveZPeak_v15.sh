@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd /data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v14_AboveZPeak_MergeBelow20GeV
+
+bash v20181206_DYReweight_AboveZPeak_M600to1000_diRap1p5to2p4.sh >&v20181206_DYReweight_AboveZPeak_M600to1000_diRap1p5to2p4.log
+echo "v20181206_DYReweight_AboveZPeak_M600to1000_diRap1p5to2p4.sh: finished"
+
+bash v20181206_DYReweight_AboveZPeak_M600to1000_diRap2p4to100p0.sh >&v20181206_DYReweight_AboveZPeak_M600to1000_diRap2p4to100p0.log
+echo "v20181206_DYReweight_AboveZPeak_M600to1000_diRap2p4to100p0.sh: finished"
+
+
+echo "ALL: finished"
