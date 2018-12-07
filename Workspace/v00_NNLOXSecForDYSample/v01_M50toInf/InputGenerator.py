@@ -26,7 +26,7 @@ for massBinEdgePair in list_massBinEdgePair:
     # -- 8, 12, 24 ...
     generator.nCore = 48
 
-    generator.FEWZPath = "/home/kplee/Physics/FEWZ/LHAPDF_621/FEWZ_3.1.rc/bin" # -- absolute path!
+    generator.FEWZPath = "/home/kplee/Physics/FEWZ/LHAPDF_621/FEWZ_3.1.rc" # -- absolute path!
     generator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v00_NNLOXSecForDYSample/v01_M50toInf" # -- absolute path!
 
     generator.muR = scale

@@ -2,4 +2,4 @@
 # -- (after customization) just copy the commands and type in the terminal
 
 cd /data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v00_NNLOXSecForDYSample/v01_M50toInf
-qsub -l ncpus=48 v20181207_XSecForDYSample_v00.sh
+qsub v20181207_XSecForDYSample_v00.sh

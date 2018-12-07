@@ -10,7 +10,7 @@ source $VO_CMS_SW_DIR/cmsset_default.sh
 cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
 eval `scramv1 runtime -sh` # -- cmsenv
 
-cd /home/kplee/Physics/FEWZ/LHAPDF_621/FEWZ_3.1.rc/bin/bin
+cd /home/kplee/Physics/FEWZ/LHAPDF_621/FEWZ_3.1.rc/bin
 
 # -- copy all necessary inputs under FEWZ/bin path
 cp /data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v00_NNLOXSecForDYSample/v01_M50toInf/v20181207_XSecForDYSample_M50to10000_param.txt ./
