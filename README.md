@@ -1,5 +1,19 @@
 # Tool for FEWZ
 
+## Purpose of this branch
+
+To produce NNLO distribution (cross section) for single lepton eta & dimuon rapidity
+
+* To investigate the discrepancy between the data and MC in high eta region
+
+### Condition
+
+* Z peak region
+* Fiducial phase space
+* Various PDF sets
+
+
+
 ### FEWZ installation
 
 * FEWZ 3.1 tar.gz file: [link](http://gate.hep.anl.gov/fpetriello/FEWZ.html) (need to check the latest version first!)
@@ -47,4 +61,3 @@ source setup.sh
 cd Example
 python InputGenerator_example.py
 ```
-
