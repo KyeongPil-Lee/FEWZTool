@@ -1,6 +1,7 @@
 from Python.FEWZInputGenerator import FEWZInputGenerator
 
-doNLOTest = True
+# doNLOTest = True
+doNLOTest = False
 
 list_PDF = [
 "NNPDF31_nnlo_as_0118_luxqed",
