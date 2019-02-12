@@ -1,0 +1,32 @@
+# -- NOT intended for sourcing ...
+# -- (after customization) just copy the commands and type in the terminal
+
+cd /data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v17_3rdTrial_AboveZPeak
+qsub v20190212_DYReweight_AboveZPeak_NLO_v00.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v01.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v02.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v03.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v04.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v05.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v06.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v07.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v08.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v09.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v10.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v11.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v12.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v13.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v14.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v15.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v16.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v17.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v18.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v19.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v20.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v21.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v22.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v23.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v24.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v25.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v26.sh
+qsub v20190212_DYReweight_AboveZPeak_NLO_v27.sh
