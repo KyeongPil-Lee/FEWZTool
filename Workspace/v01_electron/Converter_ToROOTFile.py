@@ -1,10 +1,12 @@
 from Python.FEWZtoROOTHist import FEWZtoROOTHist
 
-list_PDF = [ "CT14nnlo_as_0118", "NNPDF31_nnlo_as_0118_luxqed"]
+# list_PDF = [ "CT14nnlo_as_0118", "NNPDF31_nnlo_as_0118_luxqed"]
+list_PDF = [ "CT14nnlo" ]
 
 for PDF in list_PDF:
     tool = FEWZtoROOTHist()
-    tool.FEWZOutput = "NNLO.v20190207_FiducialXSec_Zpeak_%s.dat" % PDF
+    # tool.FEWZOutput = "NNLO.v20190207_FiducialXSec_Zpeak_%s.dat" % PDF
+    tool.FEWZOutput = "NNLO.v20190211_FiducialXSec_Zpeak_%s.dat" % PDF
     tool.dic_histName = {    
         "l+/neu. eta":  "h_eta_muPlus",
         "l-/lep. eta":  "h_eta_muMinus",
