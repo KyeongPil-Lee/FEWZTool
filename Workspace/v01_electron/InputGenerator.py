@@ -4,8 +4,9 @@ from Python.FEWZInputGenerator import FEWZInputGenerator
 doNLOTest = False
 
 list_PDF = [
-"NNPDF31_nnlo_as_0118_luxqed",
-"CT14nnlo_as_0118",
+# "NNPDF31_nnlo_as_0118_luxqed",
+# "CT14nnlo_as_0118", # -- only have 0.118 result without error set
+"CT14nnlo", # -- central value: alpha_s = 0.118 w/ all error sets
 ]
 
 for PDF in list_PDF:

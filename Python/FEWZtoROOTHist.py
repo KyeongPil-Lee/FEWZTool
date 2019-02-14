@@ -48,6 +48,8 @@ class FEWZtoROOTHist:
                     for item in line.split():
                         if self.isNumber(item):
                             list_number += [float(item)]
+                            print "line = ", line
+                            print "  -> list_number: ", list_number
 
                 if len(list_number) == 4:
                     print "\t(BinCenter, X-sec, Integration error, PDF error (symmetric)) = (%lf, %lf, %lf, %lf)" % (list_number[0], list_number[1], list_number[2], list_number[3])
@@ -59,7 +61,17 @@ class FEWZtoROOTHist:
                     }
                     list_binValue.append( dic_binValue )
 
-            if FEWZHistName in line:
+                if len(list_number) == 3:
+                    print "\t(BinCenter, X-sec, Integration error, PDF error (no info.)) = (%lf, %lf, %lf, %lf)" % (list_number[0], list_number[1], list_number[2], 0)
+                    dic_binValue = {
+                    "binCenter":  list_number[0],
+                    "binContent": list_number[1],
+                    "integErr":   list_number[2],
+                    "PDFErr":     0,
+                    }
+                    list_binValue.append( dic_binValue )
+
+            if FEWZHistName in line:                
                 isFound = True
 
 
