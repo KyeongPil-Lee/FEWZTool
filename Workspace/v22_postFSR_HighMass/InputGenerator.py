@@ -37,7 +37,7 @@ for massBinEdgePair in list_massBinEdgePair:
         generator.tag = generator.tag.replace(".", "p") # -- remove . in the file name: it makes error!!!
 
         # -- 8, 12, 24 ...
-        generator.nCore = 8
+        generator.nCore = 24
 
         generator.FEWZPath = "/home/kplee/Physics/FEWZ/v03_absRapCut/FEWZ_3.1.rc" # -- absolute path!
         generator.WSPath = "/data9/Users/kplee/FEWZTool/v01_Reweighting/Workspace/v22_postFSR_HighMass" # -- absolute path!
