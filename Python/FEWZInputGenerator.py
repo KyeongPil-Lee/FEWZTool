@@ -7,6 +7,10 @@ class FEWZInputGenerator:
         self.FEWZPath = ""
         self.WSPath = "" # -- workspace containing all inputs. FEWZ result will also be saved here.
 
+        # -- cmssw environment: for LHAPDF
+        self.SCRAM_ARCH = "slc7_amd64_gcc700"
+        self.CMSSW_VERISON = "CMSSW_10_6_8"
+
         self.nCore = 0
         # -- follow the order in FEWZ parameter card
         # -- put default values first
@@ -337,12 +341,12 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
 
 start=`date +%s`
 
-export SCRAM_ARCH=slc6_amd64_gcc630
+export SCRAM_ARCH={SCRAM_ARCH_}
 export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
 source $VO_CMS_SW_DIR/cmsset_default.sh
 
 # -- CMSSW enviornment -- #
-cd /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_1_9 # -- has NNPDF3.1+luxQED PDF set
+cd /cvmfs/cms.cern.ch/{SCRAM_ARCH_}/cms/cmssw/{CMSSW_VERSION_} # -- has NNPDF3.1+luxQED PDF set
 eval `scramv1 runtime -sh` # -- cmsenv
 
 cd {FEWZPath_}/bin
@@ -350,7 +354,7 @@ cd {FEWZPath_}/bin
 # -- copy all necessary inputs under FEWZ/bin path
 cp {WSPath_}/{fileName_param_} ./
 cp {WSPath_}/{fileName_hist_} ./
-""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath,
+""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath, SCRAM_ARCH=self.SCRAM_ARCH_, CMSSW_VERSION=self.CMSSW_VERSION_,
            fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
         
         if len(self.list_binTextFile) > 0:
