@@ -7,7 +7,7 @@ import os
 # doNLOTest = True
 doNLOTest = False
 
-nCPUCore = 128
+nCPUCore = 48
 if doNLOTest: nCPUCore = 1
 
 list_massBinEdgePair = [
