@@ -9,7 +9,7 @@ class FEWZInputGenerator:
 
         # -- cmssw environment: for LHAPDF
         self.SCRAM_ARCH = "slc7_amd64_gcc700"
-        self.CMSSW_VERISON = "CMSSW_10_6_8"
+        self.CMSSW_VERSION = "CMSSW_10_6_8"
 
         self.nCore = 0
         # -- follow the order in FEWZ parameter card
@@ -354,7 +354,7 @@ cd {FEWZPath_}/bin
 # -- copy all necessary inputs under FEWZ/bin path
 cp {WSPath_}/{fileName_param_} ./
 cp {WSPath_}/{fileName_hist_} ./
-""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath, SCRAM_ARCH=self.SCRAM_ARCH_, CMSSW_VERSION=self.CMSSW_VERSION_,
+""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath, SCRAM_ARCH_=self.SCRAM_ARCH, CMSSW_VERSION_=self.CMSSW_VERSION,
            fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
         
         if len(self.list_binTextFile) > 0:
@@ -385,10 +385,11 @@ echo "job is completed"
 end=`date +%s`
 
 runtime=$((end-start))
+runtime_m=$runtime / 60.0
 
 echo "   start:   "$start
 echo "   end:     "$end
-echo "   runtime: "$runtime
+echo "   runtime: "$runtime" (s) = "$runtime_m" (m)"
 
 """.format(
         dirName_=dirName, fileName_param_=fileName_param,

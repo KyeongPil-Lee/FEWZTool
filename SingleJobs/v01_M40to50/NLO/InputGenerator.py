@@ -4,8 +4,8 @@ from Python.CondorScriptGenerator import CondorScriptGenerator
 
 import os
 
-# doNLOTest = True
-doNLOTest = False
+doNLOTest = True
+# doNLOTest = False
 
 nCPUCore = 128
 if doNLOTest: nCPUCore = 1
