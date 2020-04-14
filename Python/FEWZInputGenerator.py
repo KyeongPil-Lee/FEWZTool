@@ -4,8 +4,6 @@ class FEWZInputGenerator:
     def __init__( self ):
 
         self.tag = ""
-        self.FEWZPath = ""
-        self.WSPath = "" # -- workspace containing all inputs. FEWZ result will also be saved here.
 
         # -- cmssw environment: for LHAPDF
         self.SCRAM_ARCH = "slc7_amd64_gcc700"
@@ -87,7 +85,8 @@ class FEWZInputGenerator:
             self.CopyCustomHistogramInput()
         else:
             self.GenerateHistogramInput()
-        self.GenerateScript()
+
+        # self.GenerateScript()
 
 
     def GenerateParameterInput(self):
@@ -324,94 +323,86 @@ Histogram bin display (0 = bin central value, -1 = bin low edge, 1 = bin upper e
         print "Do not forget to copy **bin.txt** also in the FEWZ working directory!"
 
 
-    def GenerateScript(self):
-        fileName_param = self.MakeFileName( 'param' )
-        fileName_hist = self.MakeFileName( 'hist' )
-        fileName_output = self.MakeFileName( 'output' )
-        dirName = self.MakeFileName( 'dir' )
+#     def GenerateScript(self):
+#         fileName_param = self.MakeFileName( 'param' )
+#         fileName_hist = self.MakeFileName( 'hist' )
+#         fileName_output = self.MakeFileName( 'output' )
+#         dirName = self.MakeFileName( 'dir' )
 
-        orderName = "LO"
-        if self.QCDOrder == 1: orderName = "NLO"
-        elif self.QCDOrder == 2: orderName = "NNLO"
+#         orderName = "LO"
+#         if self.QCDOrder == 1: orderName = "NLO"
+#         elif self.QCDOrder == 2: orderName = "NNLO"
 
-        fileName_script = self.MakeFileName( 'script' )
-        f = open(fileName_script, "w")
-        f.write(
-"""#!/bin/bash
+#         fileName_script = self.MakeFileName( 'script' )
+#         f = open(fileName_script, "w")
+#         f.write(
+# """#!/bin/bash
 
-start=`date +%s`
+# start=`date +%s`
 
-export SCRAM_ARCH={SCRAM_ARCH_}
-export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
-source $VO_CMS_SW_DIR/cmsset_default.sh
+# export SCRAM_ARCH={SCRAM_ARCH_}
+# export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
+# source $VO_CMS_SW_DIR/cmsset_default.sh
 
-# -- CMSSW enviornment -- #
-cd /cvmfs/cms.cern.ch/{SCRAM_ARCH_}/cms/cmssw/{CMSSW_VERSION_} # -- has NNPDF3.1+luxQED PDF set
-eval `scramv1 runtime -sh` # -- cmsenv
+# # -- CMSSW enviornment -- #
+# cd /cvmfs/cms.cern.ch/{SCRAM_ARCH_}/cms/cmssw/{CMSSW_VERSION_} # -- has NNPDF3.1+luxQED PDF set
+# eval `scramv1 runtime -sh` # -- cmsenv
 
-cd {FEWZPath_}/bin
+# cd {FEWZPath_}/bin
 
-# -- copy all necessary inputs under FEWZ/bin path
-cp {WSPath_}/{fileName_param_} ./
-cp {WSPath_}/{fileName_hist_} ./
-""".format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath, SCRAM_ARCH_=self.SCRAM_ARCH, CMSSW_VERSION_=self.CMSSW_VERSION,
-           fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
+# # -- copy all necessary inputs under FEWZ/bin path
+# cp {WSPath_}/{fileName_param_} ./
+# cp {WSPath_}/{fileName_hist_} ./
+# """.format(FEWZPath_=self.FEWZPath, WSPath_=self.WSPath, SCRAM_ARCH_=self.SCRAM_ARCH, CMSSW_VERSION_=self.CMSSW_VERSION,
+#            fileName_param_=fileName_param, fileName_hist_=fileName_hist) )
         
-        if len(self.list_binTextFile) > 0:
-            for binTextFile in self.list_binTextFile:
-                cmd_cp = "cp %s/%s ./" % (self.WSPath, binTextFile)
-                f.write(cmd_cp+"\n")
+#         if len(self.list_binTextFile) > 0:
+#             for binTextFile in self.list_binTextFile:
+#                 cmd_cp = "cp %s/%s ./" % (self.WSPath, binTextFile)
+#                 f.write(cmd_cp+"\n")
 
-        f.write("""
-echo "run local_run.sh"
-./local_run.sh z \\
-{dirName_} \\
-{fileName_param_} \\
-{fileName_hist_} \\
-{fileName_output_} \\
-../ \\
-{nCore_}
+#         f.write("""
+# echo "run local_run.sh"
+# ./local_run.sh z \\
+# {dirName_} \\
+# {fileName_param_} \\
+# {fileName_hist_} \\
+# {fileName_output_} \\
+# ../ \\
+# {nCore_}
 
-echo "run finish.sh"
-./finish.sh \\
-{dirName_} \\
-{orderName_}.{fileName_output_}
+# echo "run finish.sh"
+# ./finish.sh \\
+# {dirName_} \\
+# {orderName_}.{fileName_output_}
 
-# -- bring the output .dat file to Workspace
-cp {orderName_}.{fileName_output_} {WSPath_}
+# # -- bring the output .dat file to Workspace
+# cp {orderName_}.{fileName_output_} {WSPath_}
 
-echo "job is completed"
+# echo "job is completed"
 
-end=`date +%s`
+# end=`date +%s`
 
-runtime=$((end-start))
-runtime_m=$runtime / 60.0
+# runtime=$((end-start))
+# runtime_m='expr $runtime / 60.0'
 
-echo "   start:   "$start
-echo "   end:     "$end
-echo "   runtime: "$runtime" (s) = "$runtime_m" (m)"
+# echo "   start:   "$start
+# echo "   end:     "$end
+# echo "   runtime: "$runtime" (s) = "$runtime_m" (m)"
 
-""".format(
-        dirName_=dirName, fileName_param_=fileName_param,
-        fileName_hist_=fileName_hist, fileName_output_=fileName_output,
-        nCore_=self.nCore, orderName_=orderName,
-        WSPath_ = self.WSPath) )
+# """.format(
+#         dirName_=dirName, fileName_param_=fileName_param,
+#         fileName_hist_=fileName_hist, fileName_output_=fileName_output,
+#         nCore_=self.nCore, orderName_=orderName,
+#         WSPath_ = self.WSPath) )
 
-        f.close()
-        print "%s is generated" % fileName_script
+#         f.close()
+#         print "%s is generated" % fileName_script
 
 
     def CheckMandatoryOptions(self):
         if self.tag == "":
             print "Set the tag"
-            sys.exit()
-
-        if self.FEWZPath == "":
-            print "Set the path to FEWZ main directory"
-            sys.exit()
-
-        if self.WSPath == "":
-            print "Set the output path for FEWZ results"
             sys.exit()
 
         if self.nCore == 0:
